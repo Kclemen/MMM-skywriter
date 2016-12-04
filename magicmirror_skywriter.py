@@ -43,7 +43,7 @@ def flick(start,finish):
   #previous track
   elif(start == "east" and finish == "west"):
     print "Gesture is east to west"
-	to_node("gesture", "easttowest")0
+	to_node("gesture", "easttowest")
    # system("irsend SEND_ONCE Digibox KEY_CHANNELUP")
   else:
     print "Invalid"
