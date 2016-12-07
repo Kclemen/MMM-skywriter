@@ -20,8 +20,13 @@ module.exports = NodeHelper.create({
 			console.log("[" + self.name + "] " + message.gesture);
 			self.sendSocketNotification("gesture" + message.gesture);
 			}
-		}
-	}
+		});
+		
+		 pyshell.end(function (err) {
+			if (err) throw err;
+			console.log("[" + self.name + "] " + 'finished running...');
+		});
+	},
 
 	// Subclass socketNotificationReceived received.
 	socketNotificationReceived: function(notification, payload) {
@@ -34,4 +39,4 @@ module.exports = NodeHelper.create({
 		};
 	}
 	
-}
+});
