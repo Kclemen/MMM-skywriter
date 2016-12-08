@@ -1,15 +1,15 @@
 Module.register("MMM-skywriter",{
 	
-	// if gesture_up is zero swipe left or right switches between 'profiles'
-  gesture_up: 0,
-  gesture_right: 0,
+		gesture_up: 0,
+		gesture_right: 0,	
 
-// Override socket notification handler.
+	// Override socket notification handler.
 	socketNotificationReceived: function(notification, payload) {
-		if (payload == "up"){
+		if (payload.action == "up"){
+			console.log("payload.action is up");
 			if (gesture_up === 0) {
 				gesture_up = gesture_up+1;
-				if (gesture_up === 1){
+				if (gesture_up == 1){
 					// gesture left or right controls the popup
 					
 					MM.getModules().withClass(this.config.defaultClass).exceptWithClass(this.config.everyoneClass).enumerate(function(module) {
@@ -18,7 +18,7 @@ Module.register("MMM-skywriter",{
 						});
 					});
 			
-					MM.getModules().withClass(class_up_1_show).enumerate(function(module) {
+					MM.getModules().withClass("class_up_1_show").enumerate(function(module) {
 						module.show(1000, function() {
 							Log.log(module.name + ' is shown.');
 						});
@@ -26,10 +26,10 @@ Module.register("MMM-skywriter",{
 				}
 
 			}
-			this.sendNotification("gesture", "up");
+		//	this.sendNotification("gesture", "up");
 		}
-		else if (payload == "left"){
-			if (gesture_up === 1) {
+		else if (payload.action == "left"){
+			if (gesture_up == 1) {
 				// Perform action in popup with left
 				Log.log('popup 1 is active - swipe left');				
 			}
@@ -37,13 +37,13 @@ Module.register("MMM-skywriter",{
 				// first profile is shown, left swiping does nothing
 				Log.log('first profile active - no swipe left action possible');
 			}
-			else if (gesture_right === 1) {
+			else if (gesture_right == 1) {
 				// second profile is shown, left swiping goes back to first profile
 				Log.log('2nd profile is active - left swipe to first profile');
 			}
 		}
-		else if (payload == "down") {
-			if (gesture_up === 1) {
+		else if (payload.action == "down") {
+			if (gesture_up == 1) {
 				// // go back to main profile page
 				Log.log('popup 1 is active - swipe down');				
 			}
