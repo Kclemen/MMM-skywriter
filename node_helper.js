@@ -13,18 +13,18 @@ module.exports = NodeHelper.create({
 		pyshell.on('message', function (message) {
       
 			if (message.hasOwnProperty('status')){
-			console.log("[" + self.name + "]" + message.status);
+			console.log("node_helper_[" + self.name + "]" + message.status);
 			}
 			
 			if (message.hasOwnProperty('gesture')){
-			console.log("[" + self.name + "] " + message.gesture);
-			self.sendSocketNotification('gesture', {action: message.gesture});
+			console.log("node_helper_[" + self.name + "] " + message.gesture);
+			self.sendSocketNotification("gesture_observed", message.gesture);
 			}
 		});
 		
 		 pyshell.end(function (err) {
 			if (err) throw err;
-			console.log("[" + self.name + "] " + 'finished running...');
+			console.log("node_helper_[" + self.name + "] " + 'finished running...');
 		});
 	},
 

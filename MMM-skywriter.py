@@ -59,7 +59,7 @@ def spinny(delta):
 		some_value = 10000
 	now = int(round(time.time() * 1000))
 	if(now - last_airwheel > delay):
-		print("TV & Digibox: power")
+		#print("TV & Digibox: power")
 		#   system("irsend SEND_ONCE TV KEY_POWER")
 		#  system("irsend SEND_ONCE Digibox KEY_POWER")
 		last_airwheel = now
